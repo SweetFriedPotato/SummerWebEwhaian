@@ -1,5 +1,7 @@
 import React from "react";
 import styled from "styled-components";
+import buildings from "./buildings";
+import { useNavigate } from 'react-router-dom';
 
 const StyledMap = styled.div`
     height: 100vh;
@@ -10,6 +12,7 @@ const StyledMap = styled.div`
     justify-content: center;
     flex-wrap: wrap;
     align-items: flex-start;
+    align-content: flex-start;
 `;
 
 const BuildingBtn = styled.button`
@@ -24,27 +27,37 @@ const BuildingBtn = styled.button`
     font-family: Ewha;
     color: white;
     margin: 10px;
+    &:hover{
+        background-color: #68ac7f;
+        color: black;
+    }
+    
 `;
-const EwhaMap = ()=>{
+const EwhaMap = (buildingName)=>{
+    const navigate = useNavigate();
+    const goToBuilding = (e)=>{
+        console.log(e.target.textContent);
+       if( e.target.textContent === "공학관")
+        navigate("/engineering");
+       if(e.target.textContent === "종합과학관")
+        navigate("/science");
+       if(e.target.textContent === "포스코관")
+        navigate("/posco");
+       if(e.target.textContent === "sk텔레콤관")
+        navigate("/sktelecom");
+       if(e.target.textContent === "학관")
+        navigate("/hakgwan");
+       if(e.target.textContent === "조형예술관")
+        navigate("/joyedae");
+       if(e.target.textContent === "약학관")
+        navigate("/pharm");
+       if(e.target.textContent === "음악관")
+        navigate("/music");
+    };
+    
     return <StyledMap>
-        <BuildingBtn>공학관</BuildingBtn>
-        <BuildingBtn>연구협력관</BuildingBtn>
-        <BuildingBtn>중앙도서관</BuildingBtn>
-        <BuildingBtn>종합과학관</BuildingBtn>
-        <BuildingBtn>교육관</BuildingBtn>
-        <BuildingBtn>포스코관</BuildingBtn>
-        <BuildingBtn>학관</BuildingBtn>
-        <BuildingBtn>헬렌관</BuildingBtn>
-        <BuildingBtn>약학관</BuildingBtn>
-        <BuildingBtn>학생문화관</BuildingBtn>
-        <BuildingBtn>국제교육관</BuildingBtn>
-        <BuildingBtn>신세계관</BuildingBtn>
-        <BuildingBtn>ECC</BuildingBtn>
-        <BuildingBtn>체육관</BuildingBtn>
-        <BuildingBtn>음악관</BuildingBtn>
-        <BuildingBtn>조형예술관</BuildingBtn>
-        <BuildingBtn>sk텔레콤관</BuildingBtn>
-        <BuildingBtn>생활환경관</BuildingBtn>
+        {buildings.map(({buildingName})=>
+        <BuildingBtn onClick={goToBuilding}>{buildingName}</BuildingBtn>)}
 
     </StyledMap>;
 }
