@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import HeaderEcc from './components/HeaderEcc';
+import HeaderEcc from './components/HeaderECC';
 import Card from './components/Card';
 import './App.css';
 
